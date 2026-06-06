@@ -1,15 +1,10 @@
 /* eslint-disable no-unused-vars */
 
-import React, {
-    useState,
-} from "react";
-
+import React, { useState } from "react";
+import imageCompression from "browser-image-compression";
 import ProductForm from "../components/ProductForm";
-
 import api from "../services/api";
-
 import toast from "react-hot-toast";
-
 const AddProduct = () => {
 
     // =========================
@@ -57,16 +52,81 @@ const AddProduct = () => {
     // =========================
     // Handle Images
     // =========================
-    const handleImages = (e) => {
+    // const handleImages = (e) => {
+    //     const files = Array.from(e.target.files);
+
+    //     setImages(files);
+
+    //     const preview = files.map((file) =>
+    //         URL.createObjectURL(file)
+    //     );
+
+    //     setImagePreview(preview);
+    // };
+
+    const handleImages = async (e) => {
+
         const files = Array.from(e.target.files);
 
-        setImages(files);
+        try {
 
-        const preview = files.map((file) =>
-            URL.createObjectURL(file)
-        );
+            const compressedFiles =
+                await Promise.all(
 
-        setImagePreview(preview);
+                    files.map(async (file) => {
+
+                        const compressed =
+                            await imageCompression(
+                                file,
+                                {
+                                    maxSizeMB: 0.3,
+                                    maxWidthOrHeight: 1200,
+                                    useWebWorker: true,
+                                }
+                            );
+
+                        console.log(
+                            "Original:",
+                            (
+                                file.size /
+                                1024 /
+                                1024
+                            ).toFixed(2),
+                            "MB"
+                        );
+
+                        console.log(
+                            "Compressed:",
+                            (
+                                compressed.size /
+                                1024 /
+                                1024
+                            ).toFixed(2),
+                            "MB"
+                        );
+
+                        return compressed;
+                    })
+                );
+
+            setImages(compressedFiles);
+
+            const preview =
+                compressedFiles.map(
+                    (file) =>
+                        URL.createObjectURL(file)
+                );
+
+            setImagePreview(preview);
+
+        } catch (error) {
+
+            console.log(error);
+
+            toast.error(
+                "Image Compression Failed"
+            );
+        }
     };
 
 
