@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable no-unused-vars */
 
 import React, {
@@ -114,6 +115,18 @@ const EditProduct = () => {
         setImagePreview(preview);
     };
 
+
+    const handleRemoveImage = (index) => {
+        setImagePreview((prev) =>
+            prev.filter((_, i) => i !== index)
+        );
+
+        setImages((prev) =>
+            prev.filter((_, i) => i !== index)
+        );
+    };
+
+    
     // =========================
     // Update Product
     // =========================
@@ -195,23 +208,13 @@ const EditProduct = () => {
 
     return (
         <div>
-
-            <div className="mb-10">
-
-                <h2 className="text-4xl font-bold text-white">
-
-                    Edit Product
-
-                </h2>
-
-            </div>
-
             <ProductForm
                 formData={formData}
                 handleChange={handleChange}
                 handleImages={handleImages}
                 handleSubmit={handleSubmit}
                 loading={loading}
+                handleRemoveImage={handleRemoveImage}
                 imagePreview={imagePreview}
             />
 

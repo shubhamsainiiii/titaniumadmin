@@ -1,147 +1,116 @@
 /* eslint-disable no-unused-vars */
 
-import React from "react";
-
+import React, { useState } from "react";
 import {
-  FaHome,
-  FaBoxOpen,
-  FaPlusCircle,
-  FaStar,
-  FaEnvelope,
-  FaSignOutAlt,
+  FaHome, FaBoxOpen, FaPlusCircle,
+  FaStar, FaEnvelope, FaSignOutAlt,
+  FaChevronLeft, FaChevronRight,
 } from "react-icons/fa";
-
-import {
-  NavLink,
-  useNavigate,
-} from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const Sidebar = () => {
+const Sidebar = ({ collapsed, setCollapsed }) => {
+  const navigate = useNavigate();
 
-  const navigate =
-    useNavigate();
-
-  // =========================
-  // Logout
-  // =========================
   const handleLogout = () => {
-
-    localStorage.removeItem(
-      "token"
-    );
-
-    toast.success(
-      "Logout Successful"
-    );
-
+    localStorage.removeItem("token");
+    toast.success("Logout Successful");
     navigate("/");
   };
 
-  // =========================
-  // Sidebar Links
-  // =========================
   const links = [
-    {
-      name: "Dashboard",
-      path: "/dashboard",
-      icon: <FaHome />,
-    },
-
-    {
-      name: "Products",
-      path: "/dashboard/products",
-      icon: <FaBoxOpen />,
-    },
-
-    {
-      name: "Add Product",
-      path: "/dashboard/add-product",
-      icon: <FaPlusCircle />,
-    },
-
-    {
-      name: "Reviews",
-      path: "/dashboard/reviews",
-      icon: <FaStar />,
-    },
-
-    {
-      name: "Contacts",
-      path: "/dashboard/contacts",
-      icon: <FaEnvelope />,
-    },
+    { name: "Dashboard", path: "/dashboard", icon: <FaHome /> },
+    { name: "Products", path: "/dashboard/products", icon: <FaBoxOpen /> },
+    { name: "Add Product", path: "/dashboard/add-product", icon: <FaPlusCircle /> },
+    { name: "Reviews", path: "/dashboard/reviews", icon: <FaStar /> },
+    { name: "Contacts", path: "/dashboard/contacts", icon: <FaEnvelope /> },
   ];
 
   return (
-    <div className="w-[260px] fixed top-0 left-0 h-screen bg-[#111827] border-r border-white/10 p-6 flex flex-col justify-between">
+    <div
+      className={`
+        fixed top-0 left-0 h-screen z-50 flex flex-col justify-between
+        bg-[#0d1526] border-r border-[#1a2540]
+        transition-all duration-300 ease-in-out 
+        ${collapsed ? "w-[72px]" : "w-[240px]"}
+      `}
+    >
 
-      {/* Top */}
-      <div>
+      {/* ── Top ── */}
+      <div className="flex flex-col ">
 
-        {/* Logo */}
-        <div className="mb-12">
+        {/* Logo + toggle */}
+        <div className={`flex items-center border-b border-[#111d33] h-[64px]  px-4 ${collapsed ? "justify-center" : "justify-between"}`}>
 
-          <h2 className="text-3xl font-bold text-white">
+          {!collapsed && (
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-[#c9a227]/10 border border-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c9a227" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <h2 className="text-[15px] font-semibold tracking-tight text-slate-100 whitespace-nowrap select-none">
+                Titanium<span className="text-[#c9a227]">Safe</span>
+              </h2>
+            </div>
+          )}
 
-            Titanium
-            <span className="text-[#D4AF37]">
-              Safe
-            </span>
-
-          </h2>
-
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            className="w-7 h-7 flex items-center justify-center rounded-lg border border-[#1a2540] bg-[#080d1a] text-[#3d5070] hover:text-[#c9a227] hover:border-[#c9a227]/30 transition-all duration-200 flex-shrink-0 cursor-pointer"
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {collapsed
+              ? <FaChevronRight className="text-[9px]" />
+              : <FaChevronLeft className="text-[9px]" />
+            }
+          </button>
         </div>
 
-        {/* Links */}
-        <div className="flex flex-col gap-4">
-
+        {/* Nav Links */}
+        <nav className={`flex flex-col gap-1 p-3 mt-1 ${collapsed ? "px-2" : ""}`}>
           {links.map((item, index) => (
-
             <NavLink
               key={index}
               to={item.path}
-
               end={item.path === "/dashboard"}
-
+              title={collapsed ? item.name : undefined}
               className={({ isActive }) =>
-                `flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 font-medium
-              
+                `group flex items-center gap-3 rounded-xl transition-all duration-200 font-medium text-[13px]
+                ${collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"}
                 ${isActive
-                  ? "bg-[#D4AF37] text-[#0F172A] shadow-lg"
-                  : "text-white hover:bg-white/10"
+                  ? "bg-[#c9a227]/10 text-[#c9a227] border border-[#c9a227]/20"
+                  : "text-[#4a6080] border border-transparent hover:bg-[#080d1a] hover:text-slate-300 hover:border-[#1a2540]"
                 }`
               }
             >
-
-              <span className="text-xl">
-                {item.icon}
-              </span>
-
-              <span>
-                {item.name}
-              </span>
-
+              {({ isActive }) => (
+                <>
+                  <span className={`flex-shrink-0 text-[14px] transition-colors duration-200 ${isActive ? "text-[#c9a227]" : "text-[#3d5070] group-hover:text-slate-400"}`}>
+                    {item.icon}
+                  </span>
+                  {!collapsed && <span className="whitespace-nowrap leading-none">{item.name}</span>}
+                  {!collapsed && isActive && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#c9a227] flex-shrink-0" />}
+                </>
+              )}
             </NavLink>
           ))}
-
-        </div>
-
+        </nav>
       </div>
 
-      {/* Logout */}
-      <button
-        onClick={handleLogout}
+      {/* ── Bottom ── */}
+      <div className={`border-t border-[#111d33] ${collapsed ? "p-2" : "p-3"}`}>
 
-        className="flex items-center gap-4 px-5 py-4 rounded-2xl text-red-400 hover:bg-red-500/10 transition-all duration-300 font-medium"
-      >
-
-        <FaSignOutAlt className="text-xl" />
-
-        Logout
-
-      </button>
+        <button
+          onClick={handleLogout}
+          title={collapsed ? "Logout" : undefined}
+          className={`group w-full flex items-center gap-3 rounded-xl border border-transparent text-[#5a3535] hover:bg-red-500/10 hover:border-red-500/20 hover:text-red-400 transition-all duration-200 font-medium text-[13px] cursor-pointer ${collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"}`}
+        >
+          <FaSignOutAlt className="text-[14px] flex-shrink-0 group-hover:text-red-400 transition-colors duration-200" />
+          {!collapsed && <span className="whitespace-nowrap ">Logout</span>}
+        </button>
+      </div>
 
     </div>
   );

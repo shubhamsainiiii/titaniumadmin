@@ -1,37 +1,85 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, {
+    useEffect,
+    useState,
+} from "react";
 
 import ContactTable from "../components/ContactTable";
 
+import api from "../services/api";
+
+import toast from "react-hot-toast";
+
 const Contacts = () => {
 
-    const contacts = [
-        {
-            _id: 1,
+    const [contacts, setContacts] =
+        useState([]);
 
-            name: "Shubham",
+    const [loading, setLoading] =
+        useState(true);
 
-            email: "shubham@gmail.com",
+    const getContacts = async () => {
 
-            phone: "9876543210",
+        try {
 
-            message: "Need Product Details",
-        },
-    ];
+            const token =
+                localStorage.getItem("token");
+
+            const { data } =
+                await api.get(
+                    "/contact/all",
+                    {
+                        headers: {
+                            Authorization:
+                                `Bearer ${token}`,
+                        },
+                    }
+                );
+
+            setContacts(
+                data.contacts
+            );
+
+        } catch (error) {
+
+            console.log(error);
+
+            toast.error(
+                error.response?.data?.message ||
+                "Failed To Load Contacts"
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+    };
+
+    useEffect(() => {
+
+        getContacts();
+
+    }, []);
 
     return (
         <div>
+            {loading ? (
 
-            <h2 className="text-4xl font-bold text-white mb-10">
+                <div className="text-center text-white py-20">
+                    Loading Contacts...
+                </div>
 
-                Contacts
+            ) : (
 
-            </h2>
+                <ContactTable
+                    contacts={contacts}
+                    getContacts={getContacts}
+                />
 
-            <ContactTable
-                contacts={contacts}
-            />
+            )}
 
         </div>
     );
