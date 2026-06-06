@@ -49,21 +49,6 @@ const AddProduct = () => {
         });
     };
 
-    // =========================
-    // Handle Images
-    // =========================
-    // const handleImages = (e) => {
-    //     const files = Array.from(e.target.files);
-
-    //     setImages(files);
-
-    //     const preview = files.map((file) =>
-    //         URL.createObjectURL(file)
-    //     );
-
-    //     setImagePreview(preview);
-    // };
-
     const handleImages = async (e) => {
 
         const files = Array.from(e.target.files);
@@ -130,14 +115,19 @@ const AddProduct = () => {
     };
 
 
-    const handleRemoveImage = (index) => {
-        setImagePreview((prev) =>
-            prev.filter((_, i) => i !== index)
-        );
+    // const handleRemoveImage = (index) => {
+    //     setImagePreview((prev) =>
+    //         prev.filter((_, i) => i !== index)
+    //     );
 
-        setImages((prev) =>
-            prev.filter((_, i) => i !== index)
-        );
+    //     setImages((prev) =>
+    //         prev.filter((_, i) => i !== index)
+    //     );
+    // };
+
+    const handleRemoveImage = (index) => {
+        setImagePreview((prev) => prev.filter((_, i) => i !== index));
+        setImages((prev) => prev.filter((_, i) => i !== index));
     };
 
 

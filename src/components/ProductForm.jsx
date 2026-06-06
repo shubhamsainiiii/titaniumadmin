@@ -186,7 +186,7 @@ const ProductForm = ({
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
                   {imagePreview.map((src, index) => (
                     <div
-                      key={index}
+                      key={src}
                       className="relative group rounded-xl overflow-hidden border border-[#1a2540] bg-[#080d1a] h-40"
                     >
                       <img
