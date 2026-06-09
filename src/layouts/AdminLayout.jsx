@@ -37,7 +37,6 @@
 // export default AdminLayout;
 
 /* eslint-disable no-unused-vars */
-
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -46,10 +45,8 @@ import Topbar from "../components/Topbar";
 
 const AdminLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-
   return (
-    <div className="flex min-h-screen bg-[#070c18]">
-
+    <div className="flex min-h-screen bg-[#f8f6f0]">
       {/* Toast Notifications */}
       <Toaster
         position="top-right"

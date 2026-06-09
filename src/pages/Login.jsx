@@ -84,7 +84,7 @@ const Login = () => {
 
         } catch (error) {
 
-            console.log(error);
+            console.log("error", error);
 
             toast.error(
 
@@ -101,7 +101,7 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0F172A] flex items-center justify-center px-5">
+        <div className="min-h-screen bg-[#f8f6f0] flex items-center justify-center px-5">
 
             <motion.form
                 initial={{
@@ -120,11 +120,11 @@ const Login = () => {
 
                 onSubmit={handleSubmit}
 
-                className="w-full max-w-md bg-[#111827] border border-white/10 rounded-3xl p-8"
+                className="w-full max-w-md bg-white border border-[#e8e2d6] rounded-2xl p-8"
             >
 
                 {/* Heading */}
-                <h2 className="text-4xl font-bold text-center text-white mb-2">
+                <h2 className="text-4xl font-bold text-center text-[#0f1623] mb-2">
 
                     Admin Login
 
@@ -148,7 +148,7 @@ const Login = () => {
 
                         onChange={handleChange}
 
-                        className="w-full h-[55px] px-5 rounded-2xl bg-[#0F172A] border border-white/10 outline-none text-white focus:border-[#D4AF37]"
+                        className="w-full h-[55px] px-5 rounded-2xl bg-[#f8f6f0] border border-[#e8e2d6] text-[#0f1623] outline-none focus:border-[#D4AF37]"
                     />
 
                 </div>
@@ -165,7 +165,7 @@ const Login = () => {
 
                         onChange={handleChange}
 
-                        className="w-full h-[55px] px-5 rounded-2xl bg-[#0F172A] border border-white/10 outline-none text-white focus:border-[#D4AF37]"
+                        className="w-full h-[55px] px-5 rounded-2xl bg-[#f8f6f0] border border-[#e8e2d6] text-[#0f1623] outline-none focus:border-[#D4AF37]"
                     />
 
                 </div>
@@ -176,7 +176,7 @@ const Login = () => {
 
                     disabled={loading}
 
-                    className="w-full h-[55px] rounded-2xl bg-[#D4AF37] text-[#0F172A] font-bold text-lg hover:opacity-90 transition-all duration-300"
+                    className="w-full h-[55px] rounded-2xl bg-[#D4AF37] text-[#0F172A] font-bold text-lg hover:opacity-90 transition-all duration-300 cursor-pointer disabled:cursor-not-allowed disabled:opacity-70"
                 >
 
                     {

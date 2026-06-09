@@ -13,7 +13,7 @@ const StatCard = ({ title, value, icon, color, loading }) => {
     const c = colors[color] || colors.gold;
 
     return (
-        <div className={`relative bg-[#0d1526] border ${c.border} rounded-2xl p-6 overflow-hidden shadow-xl ${c.glow}`}>
+        <div className={`relative bg-[#f8f6f0] border ${c.border} rounded-2xl p-6 overflow-hidden shadow-xl ${c.glow}`}>
 
             {/* Subtle corner glow */}
             <div className={`absolute -top-6 -right-6 w-24 h-24 rounded-full ${c.bg} blur-2xl`} />
@@ -36,7 +36,7 @@ const StatCard = ({ title, value, icon, color, loading }) => {
                 {loading ? (
                     <div className="h-9 w-16 bg-[#1a2540] rounded-lg animate-pulse" />
                 ) : (
-                    <p className="text-4xl font-semibold text-slate-100 tracking-tight leading-none">
+                    <p className="text-4xl font-semibold text-[#1a1a2e] tracking-tight leading-none">
                         {value}
                     </p>
                 )}
