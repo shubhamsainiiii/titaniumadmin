@@ -9,7 +9,7 @@ import {
 const NotFound = () => {
 
     return (
-        <div className="min-h-screen bg-[#0F172A] flex flex-col items-center justify-center text-center px-5">
+        <div className="min-h-screen bg-[#f8f6f0] flex flex-col items-center justify-center text-center px-5">
 
             <h1 className="text-7xl font-bold text-[#D4AF37]">
 
@@ -17,7 +17,7 @@ const NotFound = () => {
 
             </h1>
 
-            <h2 className="text-3xl font-bold text-white mt-5">
+            <h2 className="text-3xl font-bold text-[#0f1623] mt-5">
 
                 Page Not Found
 

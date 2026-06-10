@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { FaBoxOpen, FaStar, FaEnvelope, FaArrowUp } from "react-icons/fa";
 import api from "../services/api";
 
+
+
 const StatCard = ({ title, value, icon, color, loading }) => {
     const colors = {
         gold: { bg: "bg-[#c9a227]/10", border: "border-[#c9a227]/20", icon: "text-[#c9a227]", bar: "bg-[#c9a227]", glow: "shadow-[#c9a227]/10" },
@@ -12,6 +14,43 @@ const StatCard = ({ title, value, icon, color, loading }) => {
     };
     const c = colors[color] || colors.gold;
 
+    if (loading) {
+        return (
+            <div
+                className={`relative bg-[#f8f6f0] border ${c.border} rounded-2xl p-6 overflow-hidden shadow-xl ${c.glow}`}
+            >
+                {/* Glow */}
+                <div
+                    className={`absolute -top-6 -right-6 w-24 h-24 rounded-full ${c.bg} blur-2xl`}
+                />
+
+                <div className="relative flex items-start justify-between">
+
+                    {/* Icon Skeleton */}
+                    <div
+                        className="w-11 h-11 rounded-xl bg-[#e7dcc5] animate-pulse"
+                    />
+
+                    {/* Live Badge Skeleton */}
+                    <div className="w-20 h-8 rounded-xl bg-[#e7dcc5] border border-emerald-100 animate-pulse" />
+                </div>
+
+                {/* Number Skeleton */}
+                <div className="mt-5">
+                    <div className="h-14 w-32 rounded-2xl bg-[#e7dcc5] animate-pulse mb-4" />
+
+                    <div className="h-4 w-28 rounded bg-[#ddd0b4] animate-pulse" />
+                </div>
+
+                {/* Progress Skeleton */}
+                <div className="mt-5 h-0.5 w-full bg-[#ece6da] rounded-full">
+                    <div
+                        className={`h-full ${c.bar} rounded-full w-2/3 opacity-40`}
+                    />
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={`relative bg-[#f8f6f0] border ${c.border} rounded-2xl p-6 overflow-hidden shadow-xl ${c.glow}`}>
 

@@ -1,20 +1,3 @@
-// /* eslint-disable no-unused-vars */
-
-// import React from "react";
-
-// const Loader = () => {
-
-//   return (
-//     <div className="flex items-center justify-center py-16">
-
-//       <div className="w-10 h-10 border-[3px] border-[#D4AF37] border-t-transparent rounded-full animate-spin"></div>
-
-//     </div>
-//   );
-// };
-
-// export default Loader;
-
 /* eslint-disable no-unused-vars */
 import React from "react";
 
@@ -29,7 +12,7 @@ const Loader = () => {
         {/* Spin ring */}
         <div className="absolute inset-0 rounded-full border-[3px] border-transparent border-t-[#D4AF37] animate-spin" />
         {/* Inner dot */}
-        <div className="absolute inset-[14px] rounded-full bg-[#D4AF37]/20" />
+        <div className="absolute inset-[14px] rounded-full bg-[#D4AF37]" />
       </div>
 
       {/* Label */}
