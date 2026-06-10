@@ -69,7 +69,7 @@ const Reviews = () => {
 
             <div className="mb-10">
 
-                <h2 className="text-4xl font-bold text-white">
+                <h2 className="text-4xl font-bold text-[#0f1623]">
 
                     Reviews
 

@@ -89,7 +89,7 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-[#070c18] p-6 lg:p-8">
+        <div className="min-h-screen bg-[#f8f6f0] p-6 lg:p-8">
 
             {/* ── Page Header ── */}
             <div className="mb-10">
@@ -99,7 +99,7 @@ const Dashboard = () => {
                         Overview
                     </p>
                 </div>
-                <h1 className="text-3xl font-semibold text-slate-100 tracking-tight">
+                <h1 className="text-3xl font-semibold text-[#0f1623] tracking-tight">
                     Dashboard
                 </h1>
                 <p className="text-[13px] text-[#3d5070] mt-1.5">

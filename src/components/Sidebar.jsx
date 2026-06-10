@@ -30,7 +30,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     <div
       className={`
         fixed top-0 left-0 h-screen z-50 flex flex-col justify-between
-        bg-[#0d1526] border-r border-[#1a2540]
+        bg-[#f8f6f0] border-r border-[#e2b932]
         transition-all duration-300 ease-in-out 
         ${collapsed ? "w-[72px]" : "w-[240px]"}
       `}
@@ -40,17 +40,17 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       <div className="flex flex-col ">
 
         {/* Logo + toggle */}
-        <div className={`flex items-center border-b border-[#111d33] h-[64px]  px-4 ${collapsed ? "justify-center" : "justify-between"}`}>
+        <div className={`flex items-center border-b border-[#e2b932] h-[64px]  px-4 ${collapsed ? "justify-center" : "justify-between"}`}>
 
           {!collapsed && (
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#c9a227]/10 border border-[#c9a227]/20 flex items-center justify-center flex-shrink-0">
+              <div className="w-7 h-7 rounded-lg bg-[#f8f6f0] border border-[#e2b932] flex items-center justify-center flex-shrink-0">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c9a227" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="11" width="18" height="11" rx="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
               </div>
-              <h2 className="text-[15px] font-semibold tracking-tight text-slate-100 whitespace-nowrap select-none">
+              <h2 className="text-[15px] font-semibold tracking-tight text-[#1a1a2e] whitespace-nowrap select-none">
                 Titanium<span className="text-[#c9a227]">Safe</span>
               </h2>
             </div>
@@ -58,7 +58,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className="w-7 h-7 flex items-center justify-center rounded-lg border border-[#1a2540] bg-[#080d1a] text-[#3d5070] hover:text-[#c9a227] hover:border-[#c9a227]/30 transition-all duration-200 flex-shrink-0 cursor-pointer"
+            className="w-7 h-7 flex items-center justify-center rounded-lg border border-[#B8941F] bg-[#f8f6f0] text-[#B8941F] hover:text-[#c9a227]/60 hover:border-[#c9a227]/60 transition-all duration-500 flex-shrink-0 cursor-pointer"
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed
@@ -80,7 +80,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                 `group flex items-center gap-3 rounded-xl transition-all duration-200 font-medium text-[13px]
                 ${collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"}
                 ${isActive
-                  ? "bg-[#c9a227]/10 text-[#c9a227] border border-[#c9a227]/20"
+                  ? "bg-[#c9a227]/10 text-[#c9a227] border border-[#e2b932]"
                   : "text-[#4a6080] border border-transparent hover:bg-[#080d1a] hover:text-slate-300 hover:border-[#1a2540]"
                 }`
               }
@@ -100,12 +100,12 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       </div>
 
       {/* ── Bottom ── */}
-      <div className={`border-t border-[#111d33] ${collapsed ? "p-2" : "p-3"}`}>
+      <div className={`border-t border-[#e2b932] ${collapsed ? "p-2" : "p-3"}`}>
 
         <button
           onClick={handleLogout}
           title={collapsed ? "Logout" : undefined}
-          className={`group w-full flex items-center gap-3 rounded-xl border border-transparent text-[#5a3535] hover:bg-red-500/10 hover:border-red-500/20 hover:text-red-400 transition-all duration-200 font-medium text-[13px] cursor-pointer ${collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"}`}
+          className={`group w-full flex items-center gap-3 rounded-xl bg-red-500/5 border border-red-500/80 text-[#5a3535] hover:bg-red-500/10 hover:border-red-500/90 hover:text-red-400 transition-all duration-200 font-medium text-[13px] cursor-pointer ${collapsed ? "justify-center px-0 py-2.5" : "px-3.5 py-2.5"}`}
         >
           <FaSignOutAlt className="text-[14px] flex-shrink-0 group-hover:text-red-400 transition-colors duration-200" />
           {!collapsed && <span className="whitespace-nowrap ">Logout</span>}
