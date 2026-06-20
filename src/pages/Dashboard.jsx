@@ -100,6 +100,7 @@ const Dashboard = () => {
     const getDashboardStats = async () => {
         try {
             const token = localStorage.getItem("token");
+            console.log("Fetching dashboard stats with token:", token);
 
             const [productsRes, reviewsRes, contactsRes] = await Promise.all([
                 api.get("/products/all"),

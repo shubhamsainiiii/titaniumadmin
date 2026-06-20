@@ -23,6 +23,8 @@ const ProductForm = ({
   handleSubmit,
   loading,
   imagePreview,
+  reorderImages,
+
 }) => {
   const fileInputRef = useRef(null);
   const isEditing = Boolean(formData?.id || formData?._id);
@@ -38,16 +40,16 @@ const ProductForm = ({
 
     const normalizedDescription = formData.description
       ? formData.description
-          .split(/,|\n/)
-          .map((f) => f.trim())
-          .filter(Boolean)
-          .join("\n")
+        .split(/,|\n/)
+        .map((f) => f.trim())
+        .filter(Boolean)
+        .join("\n")
       : "";
 
     // formData mein normalized description inject karke parent handleSubmit call karo
     const normalizedEvent = {
       ...e,
-      preventDefault: () => {},
+      preventDefault: () => { },
       _normalizedDescription: normalizedDescription,
     };
 
@@ -228,20 +230,47 @@ const ProductForm = ({
                   {imagePreview.map((src, index) => (
                     <div
                       key={src}
-                      className="relative group rounded-xl overflow-hidden border border-[#e8e2d6] bg-[#f8f6f0] h-36"
+                      className={`relative group rounded-xl overflow-hidden bg-[#f8f6f0] h-36 border-2 ${index === 0
+                        ? "border-[#D4AF37]"
+                        : "border-[#e8e2d6]"
+                        }`}
                     >
                       <img
                         src={src}
                         alt={`preview-${index}`}
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none rounded-xl" />
+
+                      {index === 0 && (
+                        <div className="absolute top-2 left-2 bg-[#D4AF37] text-[#0f1623] text-[10px] font-bold px-2 py-1 rounded-full">
+                          COVER
+                        </div>
+                      )}
+
+                      {index !== 0 && (
+                        <button
+                          type="button"
+                          onClick={() => reorderImages(index)}
+                          className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded-lg text-[10px] font-semibold border border-[#e8e2d6] opacity-0 group-hover:opacity-100 transition-all"
+                        >
+                          Set Cover
+                        </button>
+                      )}
+
                       <button
                         type="button"
                         onClick={() => onRemove(index)}
-                        className="absolute top-2 right-2 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-white border border-[#e8e2d6] text-[#9ca3af] opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-red-50 hover:border-red-200 hover:text-red-500 shadow-sm cursor-pointer"
+                        className="absolute top-2 right-2 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-white border border-[#e8e2d6] text-[#9ca3af] opacity-0 group-hover:opacity-100 transition-all duration-200 hover:bg-red-50 hover:border-red-200 hover:text-red-500 shadow-sm"
                       >
-                        <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                        <svg
+                          width="9"
+                          height="9"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        >
                           <path d="M1 1l8 8M9 1L1 9" />
                         </svg>
                       </button>

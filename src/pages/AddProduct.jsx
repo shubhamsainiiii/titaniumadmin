@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 import React, { useState } from "react";
 import imageCompression from "browser-image-compression";
 import ProductForm from "../components/ProductForm";
@@ -114,6 +113,26 @@ const AddProduct = () => {
         }
     };
 
+
+    const reorderImages = (index) => {
+        if (index === 0) return;
+
+        // Actual files reorder
+        setImages((prev) => {
+            const updated = [...prev];
+            const selected = updated.splice(index, 1)[0];
+            updated.unshift(selected);
+            return updated;
+        });
+
+        // Preview reorder
+        setImagePreview((prev) => {
+            const updated = [...prev];
+            const selected = updated.splice(index, 1)[0];
+            updated.unshift(selected);
+            return updated;
+        });
+    };
 
     // const handleRemoveImage = (index) => {
     //     setImagePreview((prev) =>
@@ -259,6 +278,7 @@ const AddProduct = () => {
                 handleSubmit={handleSubmit}
                 loading={loading}
                 imagePreview={imagePreview}
+                reorderImages={reorderImages}
             />
 
         </div>
