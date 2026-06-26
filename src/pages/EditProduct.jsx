@@ -47,6 +47,8 @@ const EditProduct = () => {
             description: "",
             price: "",
             category: "",
+            amazonLink: "",
+            flipkartLink: "",
         });
 
     // =========================
@@ -233,7 +235,6 @@ const EditProduct = () => {
                 handleRemoveImage={handleRemoveImage}
                 imagePreview={imagePreview}
                 reorderImages={reorderImages}
-
             />
 
         </div>

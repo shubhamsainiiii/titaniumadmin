@@ -32,6 +32,8 @@ const AddProduct = () => {
             description: "",
             price: "",
             category: "",
+            amazonLink: "",
+            flipkartLink: "",
         });
 
     // =========================
@@ -134,15 +136,6 @@ const AddProduct = () => {
         });
     };
 
-    // const handleRemoveImage = (index) => {
-    //     setImagePreview((prev) =>
-    //         prev.filter((_, i) => i !== index)
-    //     );
-
-    //     setImages((prev) =>
-    //         prev.filter((_, i) => i !== index)
-    //     );
-    // };
 
     const handleRemoveImage = (index) => {
         setImagePreview((prev) => prev.filter((_, i) => i !== index));
@@ -243,6 +236,8 @@ const AddProduct = () => {
                 description: "",
                 price: "",
                 category: "",
+                amazonLink: "",
+                flipkartLink: "",
             });
 
             setImages([]);
