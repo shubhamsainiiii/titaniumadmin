@@ -221,9 +221,6 @@ const ProductForm = ({
                 </div>
               </div>
 
-              <p className="mt-2 text-[11px] text-[#9ca3af]">
-                Optional: Agar product Amazon ya Flipkart par available hai to uska link yahan add karein.
-              </p>
             </div>
 
             {/* 05 — Description */}
@@ -242,7 +239,7 @@ const ProductForm = ({
                 className="w-full px-4 py-3.5 rounded-xl bg-[#f8f6f0] border border-[#e8e2d6] text-[#0f1623] text-sm placeholder:text-[#b8b0a0] leading-relaxed resize-none transition-all duration-200 focus:outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/10"
               />
               <p className="mt-1.5 text-[11px] text-[#b8b0a0]">
-                Tip: Comma ya new line se alag features likho — automatically bullet points mein save honge.
+                Tip : Separate features with commas or new lines — they'll automatically be saved as bullet points.
               </p>
             </div>
 
