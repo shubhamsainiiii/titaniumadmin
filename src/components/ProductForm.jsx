@@ -24,11 +24,9 @@ const ProductForm = ({
   loading,
   imagePreview,
   reorderImages,
-
 }) => {
   const fileInputRef = useRef(null);
   const isEditing = Boolean(formData?.id || formData?._id);
-
   const onRemove = (index) => {
     if (fileInputRef.current) fileInputRef.current.value = "";
     handleRemoveImage(index);
@@ -37,7 +35,6 @@ const ProductForm = ({
   // Description ko submit se pehle normalize karo — comma/newline se split, trim, \n se join
   const onSubmit = (e) => {
     e.preventDefault();
-
     const normalizedDescription = formData.description
       ? formData.description
         .split(/,|\n/)
